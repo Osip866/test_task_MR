@@ -96,38 +96,70 @@
 // });
 
 
-let url = new URL('https://www.mrsoft.by/data.json');
-let xhr = new XMLHttpRequest();
-xhr.open("GET", url, true);
-xhr.send();
+// let url = new URL('https://www.mrsoft.by/data.json');
+// let xhr = new XMLHttpRequest();
+// xhr.open("GET", url, true);
+// xhr.send();
 
-xhr.onload = function() {
-    alert(`Загружено: ${xhr.status} ${xhr.response}`);
-};
+// xhr.onload = function() {
+//     alert(`Загружено: ${xhr.status} ${xhr.response}`);
+// };
 
-xhr.onerror = function() { // происходит, только когда запрос совсем не получилось выполнить
-    alert(`Ошибка соединения`);
-};
+// xhr.onerror = function() { // происходит, только когда запрос совсем не получилось выполнить
+//     alert(`Ошибка соединения`);
+// };
 
-xhr.onprogress = function(event) { // запускается периодически
-    // event.loaded - количество загруженных байт
-    // event.lengthComputable = равно true, если сервер присылает заголовок Content-Length
-    // event.total - количество байт всего (только если lengthComputable равно true)
-    alert(`Загружено ${event.loaded} из ${event.total}`);
-};
-
-
+// xhr.onprogress = function(event) { // запускается периодически
+//     // event.loaded - количество загруженных байт
+//     // event.lengthComputable = равно true, если сервер присылает заголовок Content-Length
+//     // event.total - количество байт всего (только если lengthComputable равно true)
+//     alert(`Загружено ${event.loaded} из ${event.total}`);
+// };
 
 
 
 
 
 
-// let response = fetch('http://www.mrsoft.by/data.json', {
-//         mode: 'no-cors' // 'cors' by default
-//     })
-//     .then(function(response) {
-//         alert('Данные получены')
-//         console.log(response)
 
-//     });
+
+
+
+// // // In this example, if you make an ajax request to the following website
+// var myUrl = 'http://www.mrsoft.by/data.json';
+// // //  But if you make it from a browser, then it will work without problem ...
+// // // However to make it work, we are going to use the cors-anywhere free service to bypass this
+// var proxy = 'https://cors-anywhere.herokuapp.com/';
+// // // Execute request
+// // var oReq = new XMLHttpRequest();
+// // // oReq.addEventListener("load", function() {
+// // //     console.log(this.responseText);
+// // // });
+// // // Or post, etc
+// // oReq.open("GET", proxy + myUrl);
+// // oReq.send();
+
+// // oReq.onload = function() {
+// //     alert(`Загружено: ${oReq.status} ${oReq.response}`);
+// // };
+
+
+
+// let response = fetch(proxy + myUrl, {
+//     mode: 'no-cors' // 'cors' by default
+// })
+// if (response.ok) { // если HTTP-статус в диапазоне 200-299
+//     // получаем тело ответа (см. про этот метод ниже)
+//     alert("УРа работает");
+//     let json = response.json();
+// } else {
+//     alert("Ошибка HTTP: " + response.status);
+// 
+
+
+const URL = 'http://www.mrsoft.by/data.json';
+const j = x => x.json();
+(async() => {
+    const { users } = fetch(URL).then(j);
+    alert(users);
+})();
